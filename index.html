@@ -8,6 +8,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
             rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
             crossorigin="anonymous">
+            <style>
+                .car-image{
+                    width: 200px;
+                    height: 200px;
+                }
+            </style>
 </head>
 <body>
 
@@ -29,7 +35,7 @@
     </header>
 
     <div id="carholder" class="container mt-3">
-            <div class="card flex-row flex-wrap">
+            <!-- <div class="card flex-row flex-wrap">
                     <div class="card-header border-0">
                         <img src="//placehold.it/200" alt="">
                     </div>
@@ -40,30 +46,12 @@
                         <a href="#" class="btn btn-primary">Köp</a>
                     </div>
                     <div class="w-100"></div>
-                </div>
+                </div> -->
     </div> <!-- container -->
 
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="cars.js"></script>
-    <script>
-    $(document).ready(function(){
-        displayCars();
-    });//Ready
-
-    function displayCars(){
-        let url = "cars.json";
-
-        $.getJSON(url, function(response){
-            
-            let cars = response.cars;
-            $.each(cars, function(key,value){
-                console.log(value);
-            });
-            
-        })
-    };
-    </script>
 </body>
 </html>
