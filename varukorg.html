@@ -6,13 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Köp bilar</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-            rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-            crossorigin="anonymous">
-            <style>
-                    .car-image{
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <style>
+        .car-image{
                         width: 200px;
                         height: 200px;
+                    }
+                    .show{
+                        display: none;
+                        position: fixed;
+                        z-index: 1;
+                        padding-bottom: 5%;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: black;
+                        background-color: rgba(0, 0, 0, 0.4);
+                    }
+                    .show-text{
+                        padding: 15px;
+                        position: absolute;
+                        top: 30vh;
+                        left: 20%;
+                        width: 60%;
+                        background-color: #fefefe;
+                        border: 1px solid #888;
+                    }
+                    .close {
+                    font-size: 40px;
+                    float: right;
+                    color: #000;
+                    cursor: pointer;
                     }
                 </style>
 </head>
@@ -40,19 +66,23 @@
         <!-- form for costumer on checkout -->
     </div>
 
-    <form action="" id="form" >
+    <form action="" id="form">
         <input type="text" id="namn" placeholder="Förnamn Efternamn"><br>
         <input type="text" id="adress" placeholder="Adress"><br>
         <input type="number" id="telefon" placeholder="telefonnummer"><br>
         <input type="text" id="mail" placeholder="Din@epost.tack"><br>
-        <input type="submit" id="final-buy" ></button>
+        <input type="submit" id="final-buy"></button>
     </form>
 
     <div class="container mt-3">
-    <div id="varukorg-car" class="container mt-3"> </div>
+        <div id="varukorg-car" class="container mt-3"> </div>
     </div> <!-- container -->
 
-
+    <div class="show"> 
+        <h1 class="show-text">Tack för ditt köp! 
+            <span class="close">X</span>
+        </h1>
+    </div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -139,8 +169,10 @@
             }) */
             $("#final-buy").click(() => {
                 console.log("köp klart")
-
+                $('.show').show(500)
+                
             })
+            $('.close').click(()=>{$(".show").hide(500)})
 
         };
 
