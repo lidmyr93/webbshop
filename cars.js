@@ -3,7 +3,7 @@ $(document).ready(function(){
     displayOrderedcars();
     CheckForm();
 });//Ready
-
+let orderedCars = localStorage.getItem('order1');
 let carholder = $('#carholder');
 
 function displayCars(){
@@ -70,9 +70,9 @@ function saveCar(){
 // funktion för att visa produkten i varukorgen , OBS denna måste göras om i VG-Delen
 
 function displayOrderedcars(){
-    let orderedCars = localStorage.getItem('order1');
+    
     orderedCars = JSON.parse(orderedCars);
-    console.log(orderedCars);
+   
     let varukorg = $("#varukorg-car");
     if(orderedCars !== null){
         
@@ -87,7 +87,7 @@ function displayOrderedcars(){
                             </div>
                         </div>`);
          
-        
+        return orderedCars;
     }//if
         else{
            //nocar
@@ -103,7 +103,7 @@ function CheckForm() {
     let tCheck
     let aCheck
     let eCheck
-
+    
     //namevalidation
     $('#namn').keyup(() => {
         let confName = /^[a-öA-Ö]{2,30}$/;
@@ -119,7 +119,7 @@ function CheckForm() {
     })
     //Adress validation
     $('#adress').keyup(() => {
-        let confAdress = /^[a-öA-Ö0-9\s,'-]{5}$/;
+        let confAdress = /^[a-öA-Ö0-9\s,'-]{5,100}$/;
         let adress = $('#adress').val()
         if (confAdress.test(adress)) {
             aCheck = true;
@@ -169,8 +169,9 @@ function CheckForm() {
     })
     // Shows the pop-up for a complete buy
     $("#final-buy").click(() => {
-        console.log("köp klart")
         $('.show').show(500)
+        $('.show-text').append(`Tack för ditt köp av din nya ${orderedCars[1]} !!`)
+        console.log(orderedCars);
         
     })
     // Closes the pop-up

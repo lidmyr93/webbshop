@@ -62,28 +62,28 @@
         </nav>
     </header>
 
-    <div id="costumer-form">
+    <div class="container mt-3">
         <!-- form for costumer on checkout -->
-    </div>
+        <div id="varukorg-car" class="container mt-3"> </div>
 
-    <form action="" id="form">
-        <input type="text" id="namn" placeholder="Förnamn Efternamn"><br>
-        <input type="text" id="adress" placeholder="Adress"><br>
-        <input type="number" id="telefon" placeholder="telefonnummer"><br>
-        <input type="text" id="mail" placeholder="Din@epost.tack"><br>
-        <button type="button" id="final-buy" disabled >KÖP</button>
+        <div id="costumer-form">
+            <form action="" id="form" class="form-group mt-3">
+                <input type="text" id="namn" class="form-control" placeholder="Förnamn Efternamn"><br>
+                <input type="text" id="adress" class="form-control" placeholder="Adress"><br>
+                <input type="number" id="telefon" class="form-control" placeholder="telefonnummer"><br>
+                <input type="text" id="mail" class="form-control" placeholder="Din@epost.tack"><br>
+                <button type="button" id="final-buy" class="btn btn-primary" disabled >KÖP</button>
+            </div>
     </form>
 
-    <div class="container mt-3">
-        <div id="varukorg-car" class="container mt-3"> </div>
-    </div> <!-- container -->
     <!-- complete buy pop-up -->
     <div class="show"> 
-        <h1 class="show-text">Tack för ditt köp! 
+        <h1 class="show-text">
             <span class="close">X</span>
         </h1>
     </div>
-
+    
+</div> <!-- container -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="cars.js"></script>
