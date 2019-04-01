@@ -1,6 +1,7 @@
 $(document).ready(function(){
     displayCars();
-    displayOrderedcars()
+    displayOrderedcars();
+    CheckForm();
 });//Ready
 
 let carholder = $('#carholder');
@@ -94,4 +95,86 @@ function displayOrderedcars(){
         }//else
     
 };//displayorderedcars
+
+//Function to check the form and validate it
+//When form is complete and buy button is pressed the complete buy pop-up comes
+function CheckForm() {
+    let nCheck
+    let tCheck
+    let aCheck
+    let eCheck
+
+    //namevalidation
+    $('#namn').keyup(() => {
+        let confName = /^[a-öA-Ö]{2,30}$/;
+        let name = $('#namn').val()
+        if (confName.test(name)) {
+            nCheck = true;
+            $("#namn").css({"border": "3px solid green"})
+        }
+        else {
+            $("#namn").css({"border": "3px solid red"})
+            eCheck = false;
+        }
+    })
+    //Adress validation
+    $('#adress').keyup(() => {
+        let confAdress = /^[a-öA-Ö0-9\s,'-]{5}$/;
+        let adress = $('#adress').val()
+        if (confAdress.test(adress)) {
+            aCheck = true;
+            $("#adress").css({"border": "3px solid green"})
+        }
+        else {
+            $("#adress").css({"border": "3px solid red"})
+            eCheck = false;
+        }
+    })
+    //Phone validation
+    $('#telefon').keyup(() => {
+        let confTel = /^[0-9]{8,12}$/;
+        let telefon = $('#telefon').val()
+
+        if (confTel.test(Number(telefon))) {
+            tCheck = true;
+            $("#telefon").css({"border": "3px solid green"})
+        }
+        else {
+            $("#telefon").css({"border": "3px solid red"})
+            eCheck = false;
+        }
+    })
+    //email validation
+    $('#mail').keyup(() => {
+        let confEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+
+        let email = $('#mail').val()
+        if (confEmail.test(email)) {
+            eCheck = true;
+            $("#mail").css({"border": "3px solid green"})
+        }
+        else {
+            $("#mail").css({"border": "3px solid red"})
+            eCheck = false;
+        }
+    })
+
+    //Checks if all the fields have been correctly submitted, if so the button get enabled
+    $("#form").keyup(() => {
+        if (tCheck == true && nCheck == true && aCheck == true && eCheck == true) {
+            $("#final-buy").removeAttr("disabled")
+        } else {
+            $("#final-buy").attr("disabled", "true");
+        }
+    })
+    // Shows the pop-up for a complete buy
+    $("#final-buy").click(() => {
+        console.log("köp klart")
+        $('.show').show(500)
+        
+    })
+    // Closes the pop-up
+    $('.close').click(()=>{$(".show").hide(500)})
+
+};
 
