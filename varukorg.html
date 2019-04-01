@@ -1,41 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Köp bilar</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-            rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-            crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+
 </head>
+
 <body>
 
-    
+
     <header>
         <h1 class="nav-link text-center bg-dark m-0 text-primary">Bilar Webbshop</h1>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
-                      <ul class="navbar-nav">
-                          <li class="nav-item btn btn-primary mr-2">
-                          <a class="nav-link text-white" href="index.html">Webbshop</a>
-                            </li>
-                          <li class="nav-item btn btn-primary ml-2">
-                          <a class="nav-link text-white" href="varukorg.html">Varukorg</a>
-                            </li>
-                        </ul>
-                    </div>
-                  </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav">
+                    <li class="nav-item btn btn-primary mr-2">
+                        <a class="nav-link text-white" href="index.html">Webbshop</a>
+                    </li>
+                    <li class="nav-item btn btn-primary ml-2">
+                        <a class="nav-link text-white" href="varukorg.html">Varukorg</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
+    <div id="costumer-form">
+        <!-- form for costumer on checkout -->
+    </div>
+
+    <form action="" id="form" >
+        <input type="text" id="namn" placeholder="Förnamn Efternamn"><br>
+        <input type="text" id="adress" placeholder="Adress"><br>
+        <input type="number" id="telefon" placeholder="telefonnummer"><br>
+        <input type="text" id="mail" placeholder="Din@epost.tack"><br>
+        <input type="submit" id="final-buy" ></button>
+    </form>
+
     <div class="container mt-3">
-            
+
     </div> <!-- container -->
 
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="cars.js"></script>
-</body>
-</html>
+    <script>
+        $(() => {
+            CheckForm();
 
+
+        });
+
+
+        function CheckForm() {
+            let nCheck
+            let tCheck
+            let aCheck
+            let eCheck
+
+            /* //namevalidation
+            $('#namn').keyup(() => {
+                let confName = /^[a-öA-Ö]{2,30}$/;
+                let name = $('#namn').val()
+                if (confName.test(name)) {
+                    nCheck = true;
+                    console.log("rätt")
+                    $("#namn").css({"border": "3px solid green"})
+                }
+                else {
+                    eCheck = false;
+                    
+                    console.log("fel")
+                }
+            })
+            $('#adress').keyup(() => {
+                let confAdress = /^[a-öA-Ö0-9\s,'-]*$/;
+                let adress = $('#adress').val()
+                if (confAdress.test(adress)) {
+                    aCheck = true;
+                    $("#adress").css({"border": "3px solid green"})
+                    console.log("rätt")
+                }
+                else {
+                    eCheck = false;
+                    console.log("fel")
+                }
+            })
+            $('#telefon').keyup(() => {
+                let confTel = /^[0-9]{8,12}$/;
+                let telefon = $('#telefon').val()
+
+                if (confTel.test(Number(telefon))) {
+                    tCheck = true;
+                    $("#telefon").css({"border": "3px solid green"})
+                    console.log("rätt")
+                }
+                else {
+                    eCheck = false;
+                    console.log("fel")
+                }
+            })
+            //email validation
+            $('#mail').keyup(() => {
+                let confEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+
+                let email = $('#mail').val()
+                if (confEmail.test(email)) {
+                    eCheck = true;
+                    $("#mail").css({"border": "3px solid green"})
+                    console.log("rätt")
+                }
+                else {
+                    eCheck = false;
+                    console.log("fel")
+                }
+            })
+            $("#form").keyup(() => {
+                if (tCheck == true && nCheck == true && aCheck == true && eCheck == true) {
+                    $("#final-buy").removeAttr("disabled")
+                    console.log("allt rätt")
+                } else {
+                    $("#final-buy").attr("disabled", "true");
+                    console.log("minst ett fel")
+                }
+            }) */
+            $("#final-buy").click(() => {
+                console.log("köp klart")
+                
+            })
+
+        };
+
+
+    </script>
+</body>
+
+</html>
