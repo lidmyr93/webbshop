@@ -35,22 +35,21 @@ function displayCars(){
         
         
         let carBtn = carholder.children("div").children(":last-child").children(":last-child");
-        
         carBtn.on('click', saveCar);
     })//getJson
     
 }; //displayCars
 /* FUnkar för en bil nu, behöver göra om funktionen att den pushar in infoArray till en annan array på nytt index*/
-function saveCar(){
+/* function saveCar(){
     let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
     let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
     let price = $(this).parentsUntil(carholder).children("div").children("p").last().text();
     let infoArray = [img,title,price];
     let jsonInfoArray = JSON.stringify(infoArray);
     localStorage.setItem('order1', jsonInfoArray);
-}
+} */
 /* Detta steg är en början på VG-Delen att man kan köpa flera bilar */
-/* let newArray = [];
+let newArray = [];
 function saveCar(){
     let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
     let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
@@ -63,38 +62,48 @@ function saveCar(){
     console.log(newArray);
     let jsonInfoArray = JSON.stringify(newArray);
     localStorage.setItem('order1', jsonInfoArray);
-}; */
+};
 
-
-
-// funktion för att visa produkten i varukorgen , OBS denna måste göras om i VG-Delen
 
 function displayOrderedcars(){
+    let varukorg = $("#varukorg-car");
     
     orderedCars = JSON.parse(orderedCars);
-   
-    let varukorg = $("#varukorg-car");
+    
     if(orderedCars !== null){
-        
+        $.each(orderedCars, function(key,value){
             varukorg.append(`<div class="card flex-row flex-wrap">
                             <div class="card-header border-0">
-                                <img class="car-image" src="${orderedCars[0]}" alt="">
+                                <img class="car-image" src="${value[0]}" alt="">
                             </div>
                             <div class="card-block pl-5">
-                                <h4 class="card-title">${orderedCars[1]}</h4>
-                                <p class="card-text">${orderedCars[2]}</p>
-                                <a id="car" href="#" class="btn btn-danger">Ta bort</a>
+                                <h4 class="card-title">${value[1]}</h4>
+                                <p class="card-text">${value[2]}</p>
+                                <a id="${key}" href="#" class="btn btn-danger">Ta bort</a>
                             </div>
                         </div>`);
-         
-        return orderedCars;
+            /* console.log(orderedCars); */
+        });//each
     }//if
-        else{
-           //nocar
-           varukorg.append(`<p> Du har inte köpt nån bil än </p>`)
-        }//else
-    
+    else{
+        //nocar
+        varukorg.append(`<p> Du har inte köpt nån bil än </p>`)
+    }//else
+
+    let deleteBtn = varukorg.children("div").children(":last-child").children('a');
+    console.log(deleteBtn);
+    deleteBtn.on('click', function(){
+        console.log('tabort');
+        console.log(this.id);
+        console.log(orderedCars);
+        /* orderedCars.splice(this.id); */
+        console.log(orderedCars);
+        //remove from arrray orderedcars with this.id and then update localstorage and make displaycars function run again
+    })
 };//displayorderedcars
+
+
+//referens till tabort knapp
 
 //Function to check the form and validate it
 //When form is complete and buy button is pressed the complete buy pop-up comes
