@@ -49,19 +49,34 @@ function displayCars(){
     localStorage.setItem('order1', jsonInfoArray);
 } */
 /* Detta steg är en början på VG-Delen att man kan köpa flera bilar */
-let newArray = [];
+// Problem med att refreshar man sidan så skriver nästa anrop över den gamla localstorage
 function saveCar(){
+    let newArray = [];
     let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
     let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
     let price = $(this).parentsUntil(carholder).children("div").children("p").last().text();
     //infoArray kommer ha info om bilen du tryckt på temporärt
     let infoArray = [img,title,price];
-    console.log(infoArray);
-    //newArray kommer att innehålla arrayer som skapas temporärt av infoArray
-    newArray.push(infoArray);
-    console.log(newArray);
-    let jsonInfoArray = JSON.stringify(newArray);
-    localStorage.setItem('order1', jsonInfoArray);
+    /* console.log(newArray); */
+    if(localStorage.length == 0){
+        /* om localstorage inte innehåller nåt (length = 0) så skapa en nyckel och lägg till "newArray" */
+        console.log('tom fyll på');
+        newArray.push(infoArray);
+        let jsonInfoArray = JSON.stringify(newArray);
+        localStorage.setItem('order1', jsonInfoArray);
+    }
+    else{
+        /* annars hämta hem localStorage arrayen och lägg till mer saker och skicka iväg */
+        /* hämta hem localstorage arrayen öppna upp och lägg till mer saker */
+        let lcArray = localStorage.getItem('order1');
+        lcArray = JSON.parse(lcArray);
+        lcArray.push(infoArray);
+        // stringifierar skiten igen och uppdaterar localstorage
+        lcArray = JSON.stringify(lcArray);
+        localStorage.setItem('order1', lcArray);
+        console.log('success');
+        
+    };
 };
 
 
@@ -69,7 +84,7 @@ function displayOrderedcars(){
     let varukorg = $("#varukorg-car");
     let orderedCars = localStorage.getItem('order1');
     orderedCars = JSON.parse(orderedCars);
-    
+    console.log(orderedCars);
     if(orderedCars !== null){
         $.each(orderedCars, function(key,value){
             varukorg.append(`<div class="card flex-row flex-wrap">
@@ -109,7 +124,7 @@ function displayOrderedcars(){
         console.log(orderedCars);
         localStorage.setItem('order1', orderedCars)
         displayOrderedcars();
-       // blir dubletter nu, almost there
+       // blir dubletter nu, almost there måste fixa displayOrderedcars eller helt enkelt append och skriva över hela varukorgen hära
       
         
     });
