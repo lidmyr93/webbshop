@@ -113,6 +113,8 @@ function displayOrderedcars(){
         let clickedId = this.id
         let carContainer = $(this).parents(".card");
         carContainer.hide(500);
+        console.log(varukorg);
+        varukorg.children().hide();
         
         
         // Splice the array with this id , it will return the removed item, save that to a variable to kill off.
