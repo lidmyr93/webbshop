@@ -28,6 +28,7 @@ function displayCars(){
             <h4 class="card-title">${value.model}</h4>
             <p class="card-text">${value.info}</p>
             <p class="card-text">Pris : ${value.price} kr</p>
+            <input type="number" id="quantity" min="1" value="1">
             <a id="car${btnId}" href="#" class="btn btn-primary">Köp</a>
             </div>
             </div>`);
@@ -55,8 +56,10 @@ function saveCar(){
     let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
     let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
     let price = $(this).parentsUntil(carholder).children("div").children("p").last().text();
+    let quantity = $(this).parentsUntil(carholder).children("div").children("input").val();
+    console.log(quantity);
     //infoArray kommer ha info om bilen du tryckt på temporärt
-    let infoArray = [img,title,price];
+    let infoArray = [img,title,price,quantity];
     /* console.log(newArray); */
     if(localStorage.length == 0){
         /* om localstorage inte innehåller nåt (length = 0) så skapa en nyckel och lägg till "newArray" */
@@ -73,15 +76,13 @@ function saveCar(){
         lcArray.push(infoArray);
         // stringifierar skiten igen och uppdaterar localstorage
         lcArray = JSON.stringify(lcArray);
-        localStorage.setItem('order1', lcArray);
-        console.log('success');
-        
+        localStorage.setItem('order1', lcArray);        
     };
 };
 
+let varukorg = $("#varukorg-car");
 
 function displayOrderedcars(){
-    let varukorg = $("#varukorg-car");
     let orderedCars = localStorage.getItem('order1');
     orderedCars = JSON.parse(orderedCars);
     console.log(orderedCars);
@@ -94,6 +95,7 @@ function displayOrderedcars(){
                             <div class="card-block pl-5">
                                 <h4 class="card-title">${value[1]}</h4>
                                 <p class="card-text">${value[2]}</p>
+                                <input type="number" min="1" value="${value[3]}">
                                 <a id="${key}" href="#" class="btn btn-danger">Ta bort</a>
                             </div>
                         </div>`);
@@ -105,6 +107,7 @@ function displayOrderedcars(){
         varukorg.append(`<p> Du har inte köpt nån bil än </p>`)
     }//else
 
+    //referens till tabort knapp
     let deleteBtn = varukorg.children("div").children(":last-child").children('a');
     console.log(deleteBtn);
     deleteBtn.on('click', function(){
@@ -132,8 +135,14 @@ function displayOrderedcars(){
     });
 };//displayorderedcars
 
-
-//referens till tabort knapp
+//Rensa varukorgen
+$('#clear').click(clearV);
+function clearV(){
+    console.log('hej');
+    console.log(varukorg);
+    varukorg.children().hide();
+    localStorage.clear();
+}
 
 //Function to check the form and validate it
 //When form is complete and buy button is pressed the complete buy pop-up comes
@@ -218,13 +227,37 @@ function CheckForm() {
     })
     // Shows the pop-up for a complete buy
     $("#final-buy").click(() => {
-        $('.show').show(500)
-        $('.show-text').append(`Tack för ditt köp av din nya ${orderedCars[1]} !!`)
-        console.log(orderedCars);
         
-    })
-    // Closes the pop-up
-    $('.close').click(()=>{$(".show").hide(500)})
+        // Loopa in info om dina bilar
+        let orderConfirm = $('#orderconfirm');
+        let finalArray = localStorage.getItem('order1');
+        finalArray = JSON.parse(finalArray);
+        
+        orderConfirm.append(`<div>   
+                                <h1>Tack för din order<h1>
+                            `)
+        $.each(finalArray, function(key,value){
+            console.log(key);
+            console.log(value[0]); //bild
+            console.log(value[1]); //titel
+            console.log(value[2]);  //pris
+            console.log(value[3]);  //antal
+            let pricesplice = Number(value[2].slice(7,13))
+            let totalPrice = value[3] * pricesplice;
+            orderConfirm.append(`<div>  
+                                <img src="${value[0]}" alt="${value[1]}" class="car-image">
+                                <h2>${value[1]}"</h2>
+                                <p>Pris per st : ${pricesplice}</p>
+                                <p>Du har köpt : ${value[3]}</p>
+                                <p>Din kostnad : ${totalPrice}</p>
+                                </div>`)
+
+        });//each
+        orderConfirm.append('</div>')
+        varukorg.hide();
+        localStorage.clear();
+    });
+    
 
 };
 
