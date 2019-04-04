@@ -227,17 +227,37 @@ function CheckForm() {
     })
     // Shows the pop-up for a complete buy
     $("#final-buy").click(() => {
-        $('.show').show(500)
+        
         // Loopa in info om dina bilar
+        let orderConfirm = $('#orderconfirm');
         let finalArray = localStorage.getItem('order1');
         finalArray = JSON.parse(finalArray);
-        console.log(finalArray);
-        $('.show-text').append(` !!`)
         
-        
-    })
-    // Closes the pop-up
-    $('.close').click(()=>{$(".show").hide(500)})
+        orderConfirm.append(`<div>   
+                                <h1>Tack för din order<h1>
+                            `)
+        $.each(finalArray, function(key,value){
+            console.log(key);
+            console.log(value[0]); //bild
+            console.log(value[1]); //titel
+            console.log(value[2]);  //pris
+            console.log(value[3]);  //antal
+            let pricesplice = Number(value[2].slice(7,13))
+            let totalPrice = value[3] * pricesplice;
+            orderConfirm.append(`<div>  
+                                <img src="${value[0]}" alt="${value[1]}" class="car-image">
+                                <h2>${value[1]}"</h2>
+                                <p>Pris per st : ${pricesplice}</p>
+                                <p>Du har köpt : ${value[3]}</p>
+                                <p>Din kostnad : ${totalPrice}</p>
+                                </div>`)
+
+        });//each
+        orderConfirm.append('</div>')
+        varukorg.hide();
+        localStorage.clear();
+    });
+    
 
 };
 
