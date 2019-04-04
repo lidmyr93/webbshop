@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function () {
     displayCars();
     displayOrderedcars();
     CheckForm();
@@ -6,14 +6,14 @@ $(document).ready(function(){
 /* let orderedCars = localStorage.getItem('order1'); */
 let carholder = $('#carholder');
 
-function displayCars(){
+function displayCars() {
     let url = "cars.json";
-    
-    $.getJSON(url, function(response){
-        
+
+    $.getJSON(url, function (response) {
+
         let cars = response.cars;
         let btnId = 0;
-        $.each(cars, function(key,value){
+        $.each(cars, function (key, value) {
             /* console.log(value.name); */
             /* "model"
             "info"
@@ -33,117 +33,128 @@ function displayCars(){
             </div>
             </div>`);
         });//each
-        
-        
+
+
         let carBtn = carholder.children("div").children(":last-child").children(":last-child");
         carBtn.on('click', saveCar);
     })//getJson
-    
-}; //displayCars
-/* FUnkar för en bil nu, behöver göra om funktionen att den pushar in infoArray till en annan array på nytt index*/
-/* function saveCar(){
-    let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
-    let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
-    let price = $(this).parentsUntil(carholder).children("div").children("p").last().text();
-    let infoArray = [img,title,price];
-    let jsonInfoArray = JSON.stringify(infoArray);
-    localStorage.setItem('order1', jsonInfoArray);
-} */
+
+}; 
 /* Detta steg är en början på VG-Delen att man kan köpa flera bilar */
 // Problem med att refreshar man sidan så skriver nästa anrop över den gamla localstorage
-function saveCar(){
-    let newArray = [];
-    let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
-    let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
-    let quantity = $(this).parentsUntil(carholder).children("div").children("p").children("input").val();
-    let price = $(this).parentsUntil(carholder).children("div").children("p").last().text();
+function saveCar() {
     
+    let quantity = $(this).parentsUntil(carholder).children("div").children("p").children("input").val();
 
-    //infoArray kommer ha info om bilen du tryckt på temporärt
-    let infoArray = [img,title,price,quantity];
-    /* console.log(newArray); */
-    console.log(this.id)
     //För att kunna spara flera av samma bil
-    switch(this.id){
+    //Switchfunktionen hemtar hem det värdet som finns sparat i LS beroende på vilket knapp man tryckt på
+    //Sen adderar den det värdet med värdet från quantity som användaren lagt in
+
+    //Jag har en ide om hur vi ska korta ner detta till att bara vara typ 
+    switch (this.id) {
         case 'car1':
-            console.log('volvo xc90')
-            let tempArray = localStorage.getItem('car1')
-            tempArray = JSON.parse(tempArray)
-            console.log(tempArray)
-            if (tempArray == null){
-                console.log('if')
-                newArray.push(infoArray);
-                let jsonInfoArray = JSON.stringify(newArray);
-                localStorage.setItem('car1', jsonInfoArray);
+            let tempNumber1 = JSON.parse(localStorage.getItem('car1'))
+            if (tempNumber1 == null) {
+                localStorage.setItem('car1', quantity);
             }
-            else{
-                
-                console.log('else')
-                console.log(tempArray)
-                /* tempArray[3] = tempArray[3] + 1
-                localStorage.setItem('car1', JSON.stringify(tempArray)) */
+            else {
+                localStorage.setItem('car1', JSON.stringify(tempNumber1 + parseInt(quantity)))
             }
             break;
         case "car2":
-            console.log('tesla')
+            let tempNumber2 = JSON.parse(localStorage.getItem('car2'))
+            if (tempNumber2 == null) {
+                localStorage.setItem('car2', quantity);
+            }
+            else {
+                localStorage.setItem('car2', JSON.stringify(tempNumber2 + parseInt(quantity)))
+            }
             break;
         case "car3":
-            console.log('dodge')
+            let tempNumber3 = JSON.parse(localStorage.getItem('car3'))
+            if (tempNumber3 == null) {
+                localStorage.setItem('car3', quantity);
+            }
+            else {
+                localStorage.setItem('car3', JSON.stringify(tempNumber3 + parseInt(quantity)))
+            }
             break;
         case "car4":
-            console.log('audi')
+            let tempNumber4 = JSON.parse(localStorage.getItem('car4'))
+            if (tempNumber4 == null) {
+                localStorage.setItem('car4', quantity);
+            }
+            else {
+                localStorage.setItem('car4', JSON.stringify(tempNumber4 + parseInt(quantity)))
+            }
             break;
         case "car5":
-            console.log('Mercedes')
+            let tempNumber5 = JSON.parse(localStorage.getItem('car5'))
+            if (tempNumber5 == null) {
+                localStorage.setItem('car5', quantity);
+            }
+            else {
+                localStorage.setItem('car5', JSON.stringify(tempNumber5 + parseInt(quantity)))
+            }
             break;
         case "car6":
-            console.log('Corvette')
+            let tempNumber6 = JSON.parse(localStorage.getItem('car6'))
+            if (tempNumber6 == null) {
+                localStorage.setItem('car6', quantity);
+            }
+            else {
+                localStorage.setItem('car6', JSON.stringify(tempNumber6 + parseInt(quantity)))
+            }
             break;
         case "car7":
-            console.log('Mini cooper')
+            let tempNumber7 = JSON.parse(localStorage.getItem('car7'))
+            if (tempNumber7 == null) {
+                localStorage.setItem('car7', quantity);
+            }
+            else {
+                localStorage.setItem('car7', JSON.stringify(tempNumber7 + parseInt(quantity)))
+            }
             break;
         case "car8":
-            console.log('Koenigsegg')
+            let tempNumber8 = JSON.parse(localStorage.getItem('car8'))
+            if (tempNumber8 == null) {
+                localStorage.setItem('car8', quantity);
+            }
+            else {
+                localStorage.setItem('car8', JSON.stringify(tempNumber8 + parseInt(quantity)))
+            }
             break;
         case "car9":
-            console.log('Volvo 940')
+            let tempNumber9 = JSON.parse(localStorage.getItem('car9'))
+            if (tempNumber9 == null) {
+                localStorage.setItem('car9', quantity);
+            }
+            else {
+                localStorage.setItem('car9', JSON.stringify(tempNumber9 + parseInt(quantity)))
+            }
             break;
         case "car10":
-            console.log('Volvo V90')
+            let tempNumber10 = JSON.parse(localStorage.getItem('car10'))
+            if (tempNumber10 == null) {
+                localStorage.setItem('car10', quantity);
+            }
+            else {
+                localStorage.setItem('car10', JSON.stringify(tempNumber10 + parseInt(quantity)))
+            }
             break;
     }
 
-/* 
-
-    if(localStorage.length == 0){
-        //om localstorage inte innehåller nåt (length = 0) så skapa en nyckel och lägg till "newArray"
-        console.log('tom fyll på');
-        newArray.push(infoArray);
-        let jsonInfoArray = JSON.stringify(newArray);
-        localStorage.setItem('order1', jsonInfoArray);
-    }
-    else{
-        //annars hämta hem localStorage arrayen och lägg till mer saker och skicka iväg
-        //hämta hem localstorage arrayen öppna upp och lägg till mer saker
-        let lcArray = localStorage.getItem('order1');
-        lcArray = JSON.parse(lcArray);
-        lcArray.push(infoArray);
-        //stringifierar skiten igen och uppdaterar localstorage
-        lcArray = JSON.stringify(lcArray);
-        localStorage.setItem('order1', lcArray);
-        console.log('success');
-        
-    }; */
+   
 };
 
 
-function displayOrderedcars(){
+function displayOrderedcars() {
     let varukorg = $("#varukorg-car");
     let orderedCars = localStorage.getItem('order1');
     orderedCars = JSON.parse(orderedCars);
     console.log(orderedCars);
-    if(orderedCars !== null){
-        $.each(orderedCars, function(key,value){
+    if (orderedCars !== null) {
+        $.each(orderedCars, function (key, value) {
             varukorg.append(`<div class="card flex-row flex-wrap">
                             <div class="card-header border-0">
                                 <img class="car-image" src="${value[0]}" alt="">
@@ -154,17 +165,16 @@ function displayOrderedcars(){
                                 <a id="${key}" href="#" class="btn btn-danger">Ta bort</a>
                             </div>
                         </div>`);
-            /* console.log(orderedCars); */
         });//each
     }//if
-    else{
+    else {
         //nocar
         varukorg.append(`<p> Du har inte köpt nån bil än </p>`)
     }//else
 
     let deleteBtn = varukorg.children("div").children(":last-child").children('a');
     console.log(deleteBtn);
-    deleteBtn.on('click', function(){
+    deleteBtn.on('click', function () {
         //clickedid matches the id generated by the above function that appends items from localstorage
         //Gets the btns parent element(total card) and hids it
         let clickedId = this.id
@@ -172,10 +182,10 @@ function displayOrderedcars(){
         carContainer.hide(500);
         console.log(varukorg);
         varukorg.children().hide();
-        
-        
+
+
         // Splice the array with this id , it will return the removed item, save that to a variable to kill off.
-        testArray = orderedCars.splice(clickedId,1);
+        testArray = orderedCars.splice(clickedId, 1);
         console.log(testArray);
         console.log(orderedCars);
 
@@ -183,9 +193,9 @@ function displayOrderedcars(){
         console.log(orderedCars);
         localStorage.setItem('order1', orderedCars)
         displayOrderedcars();
-       // blir dubletter nu, almost there måste fixa displayOrderedcars eller helt enkelt append och skriva över hela varukorgen hära
-      
-        
+        // blir dubletter nu, almost there måste fixa displayOrderedcars eller helt enkelt append och skriva över hela varukorgen hära
+
+
     });
 };//displayorderedcars
 
@@ -199,18 +209,18 @@ function CheckForm() {
     let tCheck
     let aCheck
     let eCheck
-    
+
     //namevalidation
     $('#namn').keyup(() => {
         let confName = /^[a-öA-Ö]{2,30}$/;
         let name = $('#namn').val()
         if (confName.test(name)) {
             nCheck = true;
-            $("#namn").css({"border": "3px solid green"})
+            $("#namn").css({ "border": "3px solid green" })
             $("#namn").nextUntil("input").hide(100)
         }
         else {
-            $("#namn").css({"border": "3px solid red"})
+            $("#namn").css({ "border": "3px solid red" })
             $("#namn").nextUntil("input").show(100)
             eCheck = false;
         }
@@ -221,11 +231,11 @@ function CheckForm() {
         let adress = $('#adress').val()
         if (confAdress.test(adress)) {
             aCheck = true;
-            $("#adress").css({"border": "3px solid green"})
+            $("#adress").css({ "border": "3px solid green" })
             $("#adress").nextUntil("input").hide(100)
         }
         else {
-            $("#adress").css({"border": "3px solid red"})
+            $("#adress").css({ "border": "3px solid red" })
             $("#adress").nextUntil("input").show(100)
             eCheck = false;
         }
@@ -237,12 +247,12 @@ function CheckForm() {
 
         if (confTel.test(Number(telefon))) {
             tCheck = true;
-            $("#telefon").css({"border": "3px solid green"})
-            $("#telefon").nextUntil("input").hide(100)            
+            $("#telefon").css({ "border": "3px solid green" })
+            $("#telefon").nextUntil("input").hide(100)
 
         }
         else {
-            $("#telefon").css({"border": "3px solid red"})
+            $("#telefon").css({ "border": "3px solid red" })
             $("#telefon").nextUntil("input").show(100)
             eCheck = false;
         }
@@ -254,11 +264,11 @@ function CheckForm() {
         let email = $('#mail').val()
         if (confEmail.test(email)) {
             eCheck = true;
-            $("#mail").css({"border": "3px solid green"})
+            $("#mail").css({ "border": "3px solid green" })
             $("#mail").nextUntil("button").hide(100)
         }
         else {
-            $("#mail").css({"border": "3px solid red"})
+            $("#mail").css({ "border": "3px solid red" })
             $("#mail").nextUntil("button").show(100)
             eCheck = false;
         }
@@ -278,10 +288,10 @@ function CheckForm() {
         $('.show').show(500)
         $('.show-text').append(`Tack för ditt köp av din nya ${orderedCars[1]} !!`)
         console.log(orderedCars);
-        
+
     })
     // Closes the pop-up
-    $('.close').click(()=>{$(".show").hide(500)})
+    $('.close').click(() => { $(".show").hide(500) })
 
 };
 
