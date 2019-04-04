@@ -10,36 +10,40 @@
         crossorigin="anonymous">
     <style>
         .car-image{
-                        width: 200px;
-                        height: 200px;
-                    }
-                    .show{
-                        display: none;
-                        position: fixed;
-                        z-index: 1;
-                        padding-bottom: 5%;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: black;
-                        background-color: rgba(0, 0, 0, 0.4);
-                    }
-                    .show-text{
-                        padding: 15px;
-                        position: absolute;
-                        top: 30vh;
-                        left: 20%;
-                        width: 60%;
-                        background-color: #fefefe;
-                        border: 1px solid #888;
-                    }
-                    .close {
-                    font-size: 40px;
-                    float: right;
-                    color: #000;
-                    cursor: pointer;
-                    }
+        width: 200px;
+        height: 200px;
+        }
+        .show{
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-bottom: 5%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .show-text{
+            padding: 15px;
+            position: absolute;
+            top: 30vh;
+            left: 20%;
+            width: 60%;
+            background-color: #fefefe;
+            border: 1px solid #888;
+        }
+        .close {
+        font-size: 40px;
+        float: right;
+        color: #000;
+        cursor: pointer;
+        }
+        .error{
+            display: none;
+            color: red;
+        }
                 </style>
 </head>
 
@@ -68,10 +72,14 @@
 
         <div id="costumer-form">
             <form action="" id="form" class="form-group mt-3">
-                <input type="text" id="namn" class="form-control" placeholder="Förnamn Efternamn"><br>
-                <input type="text" id="adress" class="form-control" placeholder="Adress"><br>
-                <input type="number" id="telefon" class="form-control" placeholder="telefonnummer"><br>
-                <input type="text" id="mail" class="form-control" placeholder="Din@epost.tack"><br>
+                <input type="text" id="namn" class="form-control" placeholder="Förnamn Efternamn">
+                <span class="error">Namnet ska vara minst 2 bokstäver långt</span>
+                <input type="text" id="adress" class="form-control" placeholder="Adress">
+                <span class="error">Adressen måste vara minst 5 bokstäver långt</span>
+                <input type="number" id="telefon" class="form-control" placeholder="telefonnummer">
+                <span class="error">Nummret ska vara mellan 8 till 12 siffror</span>
+                <input type="text" id="mail" class="form-control" placeholder="Din@epost.tack">
+                <span class="error">Emailen måste vara giltig</span><br>
                 <button type="button" id="final-buy" class="btn btn-primary" disabled >KÖP</button>
             </div>
     </form>

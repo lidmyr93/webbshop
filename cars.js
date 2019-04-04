@@ -111,9 +111,11 @@ function CheckForm() {
         if (confName.test(name)) {
             nCheck = true;
             $("#namn").css({"border": "3px solid green"})
+            $("#namn").nextUntil("input").hide(100)
         }
         else {
             $("#namn").css({"border": "3px solid red"})
+            $("#namn").nextUntil("input").show(100)
             eCheck = false;
         }
     })
@@ -124,9 +126,11 @@ function CheckForm() {
         if (confAdress.test(adress)) {
             aCheck = true;
             $("#adress").css({"border": "3px solid green"})
+            $("#adress").nextUntil("input").hide(100)
         }
         else {
             $("#adress").css({"border": "3px solid red"})
+            $("#adress").nextUntil("input").show(100)
             eCheck = false;
         }
     })
@@ -138,9 +142,12 @@ function CheckForm() {
         if (confTel.test(Number(telefon))) {
             tCheck = true;
             $("#telefon").css({"border": "3px solid green"})
+            $("#telefon").nextUntil("input").hide(100)            
+
         }
         else {
             $("#telefon").css({"border": "3px solid red"})
+            $("#telefon").nextUntil("input").show(100)
             eCheck = false;
         }
     })
@@ -152,9 +159,11 @@ function CheckForm() {
         if (confEmail.test(email)) {
             eCheck = true;
             $("#mail").css({"border": "3px solid green"})
+            $("#mail").nextUntil("button").hide(100)
         }
         else {
             $("#mail").css({"border": "3px solid red"})
+            $("#mail").nextUntil("button").show(100)
             eCheck = false;
         }
     })
@@ -164,6 +173,7 @@ function CheckForm() {
         if (tCheck == true && nCheck == true && aCheck == true && eCheck == true) {
             $("#final-buy").removeAttr("disabled")
         } else {
+
             $("#final-buy").attr("disabled", "true");
         }
     })
