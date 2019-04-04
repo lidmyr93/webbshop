@@ -28,6 +28,7 @@ function displayCars(){
             <h4 class="card-title">${value.model}</h4>
             <p class="card-text">${value.info}</p>
             <p class="card-text">Pris : ${value.price} kr</p>
+            <p class="card-text">Antal : <input id="quantity" type="number" min="1" value="1"></p>
             <a id="car${btnId}" href="#" class="btn btn-primary">Köp</a>
             </div>
             </div>`);
@@ -54,29 +55,85 @@ function saveCar(){
     let newArray = [];
     let img = $(this).parentsUntil(carholder).children("div").children("img").attr("src");
     let title = $(this).parentsUntil(carholder).children("div").children("h4").text();
+    let quantity = $(this).parentsUntil(carholder).children("div").children("p").children("input").val();
     let price = $(this).parentsUntil(carholder).children("div").children("p").last().text();
+    
+
     //infoArray kommer ha info om bilen du tryckt på temporärt
-    let infoArray = [img,title,price];
+    let infoArray = [img,title,price,quantity];
     /* console.log(newArray); */
+    console.log(this.id)
+    //För att kunna spara flera av samma bil
+    switch(this.id){
+        case 'car1':
+            console.log('volvo xc90')
+            let tempArray = localStorage.getItem('car1')
+            tempArray = JSON.parse(tempArray)
+            console.log(tempArray)
+            if (tempArray == null){
+                console.log('if')
+                newArray.push(infoArray);
+                let jsonInfoArray = JSON.stringify(newArray);
+                localStorage.setItem('car1', jsonInfoArray);
+            }
+            else{
+                
+                console.log('else')
+                console.log(tempArray)
+                /* tempArray[3] = tempArray[3] + 1
+                localStorage.setItem('car1', JSON.stringify(tempArray)) */
+            }
+            break;
+        case "car2":
+            console.log('tesla')
+            break;
+        case "car3":
+            console.log('dodge')
+            break;
+        case "car4":
+            console.log('audi')
+            break;
+        case "car5":
+            console.log('Mercedes')
+            break;
+        case "car6":
+            console.log('Corvette')
+            break;
+        case "car7":
+            console.log('Mini cooper')
+            break;
+        case "car8":
+            console.log('Koenigsegg')
+            break;
+        case "car9":
+            console.log('Volvo 940')
+            break;
+        case "car10":
+            console.log('Volvo V90')
+            break;
+    }
+
+/* 
+
     if(localStorage.length == 0){
-        /* om localstorage inte innehåller nåt (length = 0) så skapa en nyckel och lägg till "newArray" */
+        //om localstorage inte innehåller nåt (length = 0) så skapa en nyckel och lägg till "newArray"
         console.log('tom fyll på');
         newArray.push(infoArray);
         let jsonInfoArray = JSON.stringify(newArray);
         localStorage.setItem('order1', jsonInfoArray);
     }
     else{
-        /* annars hämta hem localStorage arrayen och lägg till mer saker och skicka iväg */
-        /* hämta hem localstorage arrayen öppna upp och lägg till mer saker */
+        //annars hämta hem localStorage arrayen och lägg till mer saker och skicka iväg
+        //hämta hem localstorage arrayen öppna upp och lägg till mer saker
         let lcArray = localStorage.getItem('order1');
         lcArray = JSON.parse(lcArray);
         lcArray.push(infoArray);
-        // stringifierar skiten igen och uppdaterar localstorage
+        //stringifierar skiten igen och uppdaterar localstorage
         lcArray = JSON.stringify(lcArray);
         localStorage.setItem('order1', lcArray);
         console.log('success');
         
-    };
+    }; */
 };
 
 
