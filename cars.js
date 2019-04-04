@@ -50,100 +50,14 @@ function saveCar() {
     //Switchfunktionen hemtar hem det värdet som finns sparat i LS beroende på vilket knapp man tryckt på
     //Sen adderar den det värdet med värdet från quantity som användaren lagt in
 
-    //Jag har en ide om hur vi ska korta ner detta till att bara vara typ 
-    switch (this.id) {
-        case 'car1':
-            let tempNumber1 = JSON.parse(localStorage.getItem('car1'))
-            if (tempNumber1 == null) {
-                localStorage.setItem('car1', quantity);
-            }
-            else {
-                localStorage.setItem('car1', JSON.stringify(tempNumber1 + parseInt(quantity)))
-            }
-            break;
-        case "car2":
-            let tempNumber2 = JSON.parse(localStorage.getItem('car2'))
-            if (tempNumber2 == null) {
-                localStorage.setItem('car2', quantity);
-            }
-            else {
-                localStorage.setItem('car2', JSON.stringify(tempNumber2 + parseInt(quantity)))
-            }
-            break;
-        case "car3":
-            let tempNumber3 = JSON.parse(localStorage.getItem('car3'))
-            if (tempNumber3 == null) {
-                localStorage.setItem('car3', quantity);
-            }
-            else {
-                localStorage.setItem('car3', JSON.stringify(tempNumber3 + parseInt(quantity)))
-            }
-            break;
-        case "car4":
-            let tempNumber4 = JSON.parse(localStorage.getItem('car4'))
-            if (tempNumber4 == null) {
-                localStorage.setItem('car4', quantity);
-            }
-            else {
-                localStorage.setItem('car4', JSON.stringify(tempNumber4 + parseInt(quantity)))
-            }
-            break;
-        case "car5":
-            let tempNumber5 = JSON.parse(localStorage.getItem('car5'))
-            if (tempNumber5 == null) {
-                localStorage.setItem('car5', quantity);
-            }
-            else {
-                localStorage.setItem('car5', JSON.stringify(tempNumber5 + parseInt(quantity)))
-            }
-            break;
-        case "car6":
-            let tempNumber6 = JSON.parse(localStorage.getItem('car6'))
-            if (tempNumber6 == null) {
-                localStorage.setItem('car6', quantity);
-            }
-            else {
-                localStorage.setItem('car6', JSON.stringify(tempNumber6 + parseInt(quantity)))
-            }
-            break;
-        case "car7":
-            let tempNumber7 = JSON.parse(localStorage.getItem('car7'))
-            if (tempNumber7 == null) {
-                localStorage.setItem('car7', quantity);
-            }
-            else {
-                localStorage.setItem('car7', JSON.stringify(tempNumber7 + parseInt(quantity)))
-            }
-            break;
-        case "car8":
-            let tempNumber8 = JSON.parse(localStorage.getItem('car8'))
-            if (tempNumber8 == null) {
-                localStorage.setItem('car8', quantity);
-            }
-            else {
-                localStorage.setItem('car8', JSON.stringify(tempNumber8 + parseInt(quantity)))
-            }
-            break;
-        case "car9":
-            let tempNumber9 = JSON.parse(localStorage.getItem('car9'))
-            if (tempNumber9 == null) {
-                localStorage.setItem('car9', quantity);
-            }
-            else {
-                localStorage.setItem('car9', JSON.stringify(tempNumber9 + parseInt(quantity)))
-            }
-            break;
-        case "car10":
-            let tempNumber10 = JSON.parse(localStorage.getItem('car10'))
-            if (tempNumber10 == null) {
-                localStorage.setItem('car10', quantity);
-            }
-            else {
-                localStorage.setItem('car10', JSON.stringify(tempNumber10 + parseInt(quantity)))
-            }
-            break;
+    let tempNumber = JSON.parse(localStorage.getItem(this.id))
+    if (tempNumber == null) {
+        localStorage.setItem(this.id, quantity);
     }
-
+    else {
+        localStorage.setItem(this.id, JSON.stringify(tempNumber + parseInt(quantity)))
+    }
+    
    
 };
 
