@@ -115,9 +115,8 @@ function changeValue(){
     let value = $(this).val()
     //Hämta localstorage
     //Behöver hämta hem id på föremålet som finns på a elementet
-    let key = $(this).parent().next().id;
-    console.log(key);
-    
+    let key = $(this).parent().next().attr('id');
+    localStorage.setItem(key, value);
 }
 
                    
