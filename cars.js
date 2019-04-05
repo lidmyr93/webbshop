@@ -74,20 +74,25 @@ function displayOrderedcars() {
             $.getJSON(url, function (response) {
                 let tempCars = JSON.parse(localStorage.getItem(localStorage.key(i)))
                 let tempKey = localStorage.key(i);
+                console.log(response.cars);
+                console.log(tempKey);
                 console.log(tempCars)
-                $.each(tempCars, function (tempKey, value) {
-                    varukorg.append(`<div class="card flex-row flex-wrap">
-                    <div class="card-header border-0">
-                    <img class="car-image" src="${value.img}" alt="${value.model}">
-                    </div>
-                    <div class="card-block pl-5">
-                    <h4 class="card-title">${value.model}</h4>
-                    <p class="card-text">${value.info}</p>
-                    <p class="card-text">Pris : ${value.price} kr</p>
-                    <p class="card-text">Antal : <input id="quantity" type="number" min="1" value="1"></p>
-                    <a id="car${btnId}" href="#" class="btn btn-primary">Köp</a>
-                    </div>
-                    </div>`);
+                $.each(response.cars, function (tempKey, value) {
+                    if(response.cars == tempKey){
+                    console.log(hej);
+                            varukorg.append(`<div class="card flex-row flex-wrap">
+                                                <div class="card-header border-0">
+                                                    <img class="car-image" src="${value.img}" alt="${value.model}">
+                                                </div>
+                                                <div class="card-block pl-5">
+                                                    <h4 class="card-title">${value.model}</h4>
+                                                    <p class="card-text">${value.info}</p>
+                                                    <p class="card-text">Pris : ${value.price} kr</p>
+                                                    <p class="card-text">Antal : <input id="quantity" type="number" min="1" value="1"></p>
+                                                    <a id="car" href="#" class="btn btn-primary">Köp</a>
+                                                </div>
+                                            </div>`);
+                                        }
                 })
             })
             
