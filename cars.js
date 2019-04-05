@@ -85,7 +85,7 @@ function displayOrderedcars() {
                                                     <p class="card-text">${value.info}</p>
                                                     <p class="card-text">Pris : ${value.price} kr</p>
                                                     <p class="card-text">Antal : <input id="quantity" type="number" min="1" value="${tempCars}"></p>
-                                                    <a id="car" href="#" class="btn btn-danger">Ta bort</a>
+                                                    <a id="${key}" href="#" class="btn btn-danger">Ta bort</a>
                                                 </div>
                                             </div>`);
                                         } // if matching id
@@ -100,9 +100,10 @@ function displayOrderedcars() {
                     
                     
 function deleteCar(){
-    /* let removeItem = $(this).parentsUntil(varukorg); */
-    $(this).parentsUntil(varukorg).hide()
-    /* console.log(removeItem); */
+    $(this).parentsUntil(varukorg).hide(500)
+    let key = this.id;
+    localStorage.removeItem(key);
+    
 }
 
                    
