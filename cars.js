@@ -2,8 +2,10 @@ $(document).ready(function () {
     displayCars();
     displayOrderedcars();
     CheckForm();
+    
+    
 });//Ready
-/* let orderedCars = localStorage.getItem('order1'); */
+
 let carholder = $('#carholder');
 
 function displayCars() {
@@ -43,13 +45,11 @@ function displayCars() {
 /* Detta steg är en början på VG-Delen att man kan köpa flera bilar */
 // Problem med att refreshar man sidan så skriver nästa anrop över den gamla localstorage
 function saveCar() {
-
+    
     let quantity = $(this).parentsUntil(carholder).children("div").children("p").children("input").val();
-
     //För att kunna spara flera av samma bil
     //Switchfunktionen hemtar hem det värdet som finns sparat i LS beroende på vilket knapp man tryckt på
     //Sen adderar den det värdet med värdet från quantity som användaren lagt in
-
     let tempNumber = JSON.parse(localStorage.getItem(this.id))
     if (tempNumber == null) {
         localStorage.setItem(this.id, quantity);
@@ -57,12 +57,10 @@ function saveCar() {
     else {
         localStorage.setItem(this.id, JSON.stringify(tempNumber + parseInt(quantity)))
     }
-
-
 };
 
 let varukorg = $("#varukorg-car");
-
+let deleteBtn = "";
 function displayOrderedcars() {
     
 
@@ -92,17 +90,22 @@ function displayOrderedcars() {
                                             </div>`);
                                         } // if matching id
                                     }) //each cars
+                                    deleteBtn = varukorg.children("div").children(":last-child").children(":last-child");
+                                    $(deleteBtn).on('click', deleteCar);
                                 }) //getJson
-                                
                             }//if localstorage
                         } //for
                         
                     };//displayorderedcars
                     
                     
-                    
-let deleteBtn = varukorg.children() ;
-console.log(deleteBtn);
+function deleteCar(){
+    /* let removeItem = $(this).parentsUntil(varukorg); */
+    $(this).parentsUntil(varukorg).hide()
+    /* console.log(removeItem); */
+}
+
+                   
 
 //referens till tabort knapp
     /* deleteBtn.on('click', function () {
