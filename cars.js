@@ -60,7 +60,6 @@ function saveCar() {
 };
 
 let varukorg = $("#varukorg-car");
-let deleteBtn = "";
 function displayOrderedcars() {
     
 
@@ -90,15 +89,20 @@ function displayOrderedcars() {
                                             </div>`);
                                         } // if matching id
                                     }) //each cars
-                                    deleteBtn = varukorg.children("div").children(":last-child").children(":last-child");
+                                    let deleteBtn = varukorg.children("div").children(":last-child").children(":last-child");
                                     $(deleteBtn).on('click', deleteCar);
+                                    let inputField = varukorg.children("div").children(":last-child").children("p").children(":last-child");
+                                    $(inputField).on('change', changeValue);
+                                    
+
                                 }) //getJson
                             }//if localstorage
                         } //for
                         
                     };//displayorderedcars
                     
-                    
+     
+                  
 function deleteCar(){
     $(this).parentsUntil(varukorg).hide(500)
     let key = this.id;
@@ -106,12 +110,19 @@ function deleteCar(){
     
 }
 
+function changeValue(){
+    //Sparar aktuellt värde
+    let value = $(this).val()
+    //Hämta localstorage
+    //Behöver hämta hem id på föremålet som finns på a elementet
+    let key = $(this).parent().next().id;
+    console.log(key);
+    
+}
+
                    
 
-//referens till tabort knapp
-    /* deleteBtn.on('click', function () {
-        console.log('hej');
-    }); */
+
 
 //Rensa varukorgen
 $('#clear').click(clearV);
